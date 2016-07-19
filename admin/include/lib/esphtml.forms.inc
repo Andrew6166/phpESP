@@ -74,6 +74,19 @@ function mktext ($_name, $size = 20, $max = 0, $varr = null) {
 }
 /* }}} */
 
+/* {{{ proto string mkdate(string name, int size)
+   Returns HTML format for a date entry line. */
+function mkdate ($_name, $size = 16, $varr = null) {
+    if ($varr == null)
+        $varr =& $_POST;
+    $size = intval($size);
+    $str = "size=\"$size\"";
+    if (isset($varr[$_name]))
+        return('<input type="date" '. $str .' name="'. htmlspecialchars($_name) .'" value="'. _stripslashes(htmlspecialchars($varr[$_name])) .'" />');
+    return('<input type="date" '. $str .' name="'. htmlspecialchars($_name) .'" />');
+}
+/* }}} */
+
 /* {{{ proto string mkpass(string name)
    Returns HTML format for a password entry line. */
 function mkpass ($_name) {
